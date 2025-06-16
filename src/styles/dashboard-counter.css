@@ -1,0 +1,263 @@
+.dashboard-counter {
+  background-color: var(--background-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboard-counter:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-color);
+}
+
+.dashboard-counter:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.counter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.counter-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.counter-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 0.5rem 0;
+  line-height: 1;
+}
+
+.counter-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-icon {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-icon:hover {
+  background-color: var(--background-hover);
+  color: var(--text-primary);
+}
+
+.action-icon.edit:hover {
+  color: var(--primary-color);
+}
+
+.action-icon.delete:hover {
+  color: var(--error-color);
+}
+
+.action-icon.save:hover {
+  color: var(--success-color);
+}
+
+.action-icon.cancel:hover {
+  color: var(--error-color);
+}
+
+.action-icon.settings:hover {
+  color: #3b82f6;
+}
+
+.action-icon.settings.active {
+  color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px var(--primary-color-light);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.counter-settings {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.settings-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toggle-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-label span {
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+.toggle-switch {
+  position: relative;
+  width: 2.5rem;
+  height: 1.25rem;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 1.25rem;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 1rem;
+  width: 1rem;
+  left: 0.125rem;
+  bottom: 0.125rem;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #3b82f6;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(1.25rem);
+}
+
+.threshold-input {
+  margin-top: 0.25rem;
+}
+
+.threshold-input input {
+  width: 100%;
+  padding: 0.375rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  background-color: white;
+}
+
+.threshold-input input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-counter {
+    padding: 1.25rem;
+  }
+
+  .counter-name {
+    font-size: 1.125rem;
+  }
+
+  .counter-value {
+    font-size: 1.75rem;
+  }
+
+  .edit-input {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-counter {
+    padding: 1rem;
+  }
+
+  .counter-name {
+    font-size: 1rem;
+  }
+
+  .counter-value {
+    font-size: 1.5rem;
+  }
+
+  .action-icon {
+    padding: 0.375rem;
+  }
+
+  .edit-input {
+    font-size: 1rem;
+  }
+} 

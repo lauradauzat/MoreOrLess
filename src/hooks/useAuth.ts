@@ -1,0 +1,80 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { 
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  signOut as firebaseSignOut,
+  onAuthStateChanged,
+  User,
+  AuthError
+} from 'firebase/auth';
+import { auth } from '@/lib/firebase';
+
+export function useAuth() {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+
+    // Check for redirect result
+    getRedirectResult(auth).catch((error) => {
+      console.error('Erreur de redirection:', error);
+      setError('Une erreur est survenue lors de la connexion');
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const signIn = async () => {
+    setError(null);
+    const provider = new GoogleAuthProvider();
+    
+    try {
+      // Try popup first
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      const authError = error as AuthError;
+      
+      // If popup is blocked or cancelled, fallback to redirect
+      if (authError.code === 'auth/popup-blocked' || 
+          authError.code === 'auth/cancelled-popup-request' ||
+          authError.code === 'auth/popup-closed-by-user') {
+        try {
+          await signInWithRedirect(auth, provider);
+        } catch (redirectError) {
+          console.error('Erreur de redirection:', redirectError);
+          setError('Une erreur est survenue lors de la connexion');
+        }
+      } else {
+        console.error('Erreur de connexion:', error);
+        setError('Une erreur est survenue lors de la connexion');
+      }
+    }
+  };
+
+  const signOut = async () => {
+    setError(null);
+    try {
+      await firebaseSignOut(auth);
+    } catch (error) {
+      console.error('Erreur de déconnexion:', error);
+      setError('Une erreur est survenue lors de la déconnexion');
+    }
+  };
+
+  return {
+    user,
+    loading,
+    error,
+    signIn,
+    signOut,
+  };
+} 

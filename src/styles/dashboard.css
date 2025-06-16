@@ -1,0 +1,243 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.create-counter-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1rem;
+  background-color: var(--background-color);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.counter-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.counter-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.create-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--card-shadow);
+  background-color: var(--primary-dark);
+}
+
+.create-button:active {
+  transform: translateY(0);
+}
+
+.counters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.counter-card {
+  background-color: var(--background-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+}
+
+.counter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
+  border-color: var(--primary-color);
+}
+
+.counter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.counter-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.view-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.view-link:hover {
+  background-color: var(--background-hover);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .counters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin: 1rem auto;
+  }
+
+  .dashboard-title {
+    font-size: 2rem;
+  }
+
+  .create-counter-form {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .create-button {
+    width: 100%;
+  }
+
+  .counters-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .counter-card {
+    padding: 1rem;
+  }
+
+  .counter-name {
+    font-size: 1.1rem;
+  }
+
+  .view-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 0 0.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.75rem;
+  }
+
+  .create-counter-form {
+    padding: 0.75rem;
+  }
+
+  .counter-input {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .create-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .counter-card {
+    padding: 0.75rem;
+  }
+
+  .counter-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .counter-name {
+    font-size: 1rem;
+  }
+
+  .view-link {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Ensure counter component is responsive */
+.counter-card :global(.counter-container) {
+  margin: 0;
+  padding: 0.75rem;
+}
+
+.counter-card :global(.counter-display) {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.counter-card :global(.counter-controls) {
+  gap: 0.5rem;
+}
+
+.counter-card :global(.counter-button) {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+  .counter-card :global(.counter-display) {
+    font-size: 2rem;
+  }
+
+  .counter-card :global(.counter-button) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+} 
