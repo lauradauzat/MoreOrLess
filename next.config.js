@@ -2,6 +2,9 @@
 const nextConfig = {
   output: 'export',
   basePath: '/MoreOrLess',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: '/MoreOrLess',
+  },
   images: {
     unoptimized: true,
   },

@@ -6,8 +6,11 @@ import { useAuth } from '@/hooks/useAuth';
 import { ArrowRightOnRectangleIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline';
 import '@/styles/navbar.css';
 
+// Get basePath from environment or default to empty string
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 export default function Navbar() {
-  const { user, signIn, signOut } = useAuth();
+  const { user, signingIn, signIn, signOut } = useAuth();
 
   return (
     <nav className="navbar">
@@ -15,7 +18,7 @@ export default function Navbar() {
         <div className="navbar-content">
           <Link href="/" className="logo-container">
             <Image
-              src="/images/logo.png"
+              src={`${basePath}/images/logo.png`}
               alt="PlusOuMoins Logo"
               width={32}
               height={32}
@@ -42,9 +45,10 @@ export default function Navbar() {
               <button
                 onClick={() => signIn()}
                 className="login-button"
+                disabled={signingIn}
               >
                 <ArrowRightOnRectangleIcon className="button-icon" />
-                Connexion
+                {signingIn ? 'Connexion...' : 'Connexion'}
               </button>
             )}
           </div>
