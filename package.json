@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build && next export",
-    "deploy": "npm run build && echo. > out/.nojekyll && git add out/ && git commit -m \"Deploy to gh-pages\" && git push origin gh-pages --force"
+    "deploy": "npm run build && echo. > out/.nojekyll && xcopy out\\* . /E /Y && git add . && git commit -m \"Deploy to gh-pages\" && git push origin gh-pages --force"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
